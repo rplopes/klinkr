@@ -77,10 +77,10 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "password"
-        fill_in "Confirmation", with: "password"
+        fill_in "Name",             with: "Example User"
+        fill_in "Email",            with: "user@example.com"
+        fill_in "Password",         with: "password"
+        fill_in "Confirm Password", with: "password"
       end
 
       it "should create a user" do
@@ -119,10 +119,10 @@ describe "User pages" do
       let(:new_name)  { "New Name" }
       let(:new_email) { "new@example.com" }
       before do
-        fill_in "Name",         with: new_name
-        fill_in "Email",        with: new_email
-        fill_in "Password",     with: user.password
-        fill_in "Confirmation", with: user.password
+        fill_in "Name",             with: new_name
+        fill_in "Email",            with: new_email
+        fill_in "Password",         with: user.password
+        fill_in "Confirm Password", with: user.password
         click_button "Save changes"
       end
 
