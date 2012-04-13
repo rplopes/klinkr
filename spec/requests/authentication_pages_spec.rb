@@ -72,10 +72,7 @@ describe "Authentication" do
             page.should have_selector('title', text: 'Update user')
           end
           describe "when signing in again" do
-            before do
-              visit signin_path
-              sign_in(user)
-            end
+            before { sign_in(user) }
             it "should render the default (profile) page" do
               page.should have_selector('title', text: user.name) 
             end
