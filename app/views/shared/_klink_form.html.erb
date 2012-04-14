@@ -1,0 +1,7 @@
+<%= form_for(@klink) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :description, placeholder: "Description" %>
+  </div>
+  <%= f.submit "klink!", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -14,6 +14,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:klinks) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -117,6 +118,33 @@ describe User do
 
       it { should_not == user_for_invalid_password }
       specify { user_for_invalid_password.should be_false }
+    end
+  end
+
+  # User klinks
+
+  describe "klink associations" do
+    before { @user.save }
+    let!(:older_klink) { FactoryGirl.create(:klink, user: @user, created_at: 1.day.ago) }
+    let!(:newer_klink) { FactoryGirl.create(:klink, user: @user, created_at: 1.hour.ago) }
+
+    it "should have the right klinks in the right order" do
+      @user.klinks.should == [newer_klink, older_klink]
+    end
+
+    it "should destroy associated klinks" do
+      klinks = @user.klinks
+      @user.destroy
+      klinks.each do |klink|
+        Klink.find_by_id(klink.id).should be_nil
+      end
+    end
+
+    describe "status" do
+      let(:unfollowed_post) { FactoryGirl.create(:klink, user: FactoryGirl.create(:user)) }
+      its(:feed) { should include newer_klink }
+      its(:feed) { should include older_klink }
+      its(:feed) { should include unfollowed_post }
     end
   end
 end

@@ -79,6 +79,22 @@ describe "Authentication" do
           end
         end
       end
+
+      describe "in the Klinks controller" do
+
+        describe "submitting to the create action" do
+          before { post klinks_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before do
+            klink = FactoryGirl.create(:klink)
+            delete klink_path(klink)
+          end
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
     end
 
     describe "as wrong user" do

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @klinks = @user.klinks.paginate(page: params[:page])
   end
 
   def new
@@ -48,13 +49,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-    def signed_in_user
-      if not signed_in?
-        store_location
-        redirect_to signin_path, notice: "Please sign in."
-      end
-    end
 
     def unsigned_user
       redirect_to root_path if signed_in?

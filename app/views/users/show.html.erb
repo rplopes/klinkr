@@ -5,4 +5,13 @@
       <h1><%= gravatar_for @user %><%= @user.name %></h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.klinks.any? %>
+      <h3>Klinks (<%= @user.klinks.count %>)</h3>
+      <ol class="klinks">
+        <%= render @klinks %>
+      </ol>
+      <%= will_paginate @klinks %>
+    <% end %>
+  </div>
 </div>

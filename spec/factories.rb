@@ -9,4 +9,9 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :klink do
+    description "Sample klink"
+    user
+  end
 end
