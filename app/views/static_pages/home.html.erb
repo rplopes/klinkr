@@ -1,26 +1,5 @@
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/klink_form' %>
-      </section>
-    </aside>
-    <div class="span8">
-      <h3>Newest klinks</h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
+  <%= render 'home_signed_in' %>
 <% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to klinkr</h1>
-
-    <h2>
-      klinkr is the new way to share photos of places you've been to and to find amazing new locations to visit all around the globe.
-    </h2>
-
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-  </div>
+  <%= render 'home_unsigned' %>
 <% end %>
