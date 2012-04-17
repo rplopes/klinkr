@@ -1,11 +1,11 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
       <h1><%= gravatar_for @user %><%= @user.name %></h1>
     </section>
   </aside>
-  <div class="span8">
+  <div class="span9">
     <% if @user.klinks.any? %>
       <h3>Klinks (<%= @user.klinks.count %>)</h3>
       <ol class="klinks">

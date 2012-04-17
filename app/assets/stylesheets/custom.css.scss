@@ -187,9 +187,13 @@ input, textarea, select, .uneditable-input {
   margin: 10px 0 0 0;
 
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-    min-height: 50px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #e8e8e8;
+    background: #f8f8f8;
+    height: 235px;
+    width: 200px;
+    float: left;
   }
 }
 .content {
@@ -207,6 +211,15 @@ aside {
     height: 100px;
     margin-bottom: 5px;
   }
+}
+div.thumb {
+  width: 200px;
+  height: 200px;
+  display:table-cell;
+  vertical-align:middle;
+}
+img.thumb {
+  margin: auto;
 }
 
 /* miscellaneous */

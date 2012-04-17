@@ -1,7 +1,9 @@
 <li>
-  <span class="content"><%= klink.description %></span>
+  <div class="thumb">
+    <%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: klink.picture_uri)), class: "thumb" %>
+  </div>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(klink.created_at) %> ago.
+    By <%= link_to klink.user.name, klink.user %> <%= time_ago_in_words(klink.created_at) %> ago.
   </span>
   <% if current_user?(klink.user) %>
     <%= link_to "delete", klink, method: :delete, confirm: "Are you sure?", title: klink.description %>
