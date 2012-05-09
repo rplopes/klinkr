@@ -184,7 +184,7 @@ input, textarea, select, .uneditable-input {
 
 .klinks {
   list-style: none;
-  margin: 10px 0 0 0;
+  margin: 10px auto 0 auto;
 
   li {
     padding: 10px;
@@ -220,6 +220,29 @@ div.thumb {
 }
 img.thumb {
   margin: auto;
+}
+
+/* right sidebar */
+
+@media screen and (max-width: 966px) {
+    .right-col {
+        display: none !important;
+    }
+    .left-body {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 966px) {
+    .right-col {
+        width: 25%;
+        float: left;
+        background: #eee;
+        height: 500px;
+    }
+    .left-body {
+        width: 75%;
+        float: left;
+    }
 }
 
 /* miscellaneous */

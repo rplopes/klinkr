@@ -1,17 +1,19 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span3">
-    <section>
-      <h1><%= gravatar_for @user %><%= @user.name %></h1>
-    </section>
-  </aside>
-  <div class="span9">
-    <% if @user.klinks.any? %>
-      <h3>Klinks (<%= @user.klinks.count %>)</h3>
-      <ol class="klinks">
-        <%= render @klinks %>
-      </ol>
-      <%= will_paginate @klinks %>
-    <% end %>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="left-body">
+      <div style="float: left; width: 100%; margin: 10px 0 20px 0">
+        <h3><%= gravatar_for @user %><%= @user.name %></h3>
+      </div>
+      <% if @user.klinks.any? %>
+        <ol class="klinks">
+          <%= render @klinks %>
+        </ol>
+        <%= will_paginate @klinks %>
+      <% end %>
+    </div>
+    <div class="right-col">
+      teste
+    </div>
   </div>
 </div>
