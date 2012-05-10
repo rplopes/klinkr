@@ -1,0 +1,27 @@
+<div class="modal fade" id="modal<%= feed_item.id %>" style="display: none; width: 90%; margin-left: auto; margin-right: auto; margin-top: -45%; left: 5%; max-height: 90%">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h3>Klink <%= feed_item.id %></h3>
+  </div>
+  <div class="modal-body" style="text-align: center">
+    <div>
+      <%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: feed_item.picture_uri)) %>
+    </div>
+    <div style="max-width: 960px; margin: auto">
+      <div class="tabbable" style="text-align: left">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#details<%= feed_item.id %>" data-toggle="tab">Details</a></li>
+          <li><a href="#comments<%= feed_item.id %>" data-toggle="tab">Comments</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="details<%= feed_item.id %>">
+            <p>I'm in Section 1.</p>
+          </div>
+          <div class="tab-pane" id="comments<%= feed_item.id %>">
+            <p>Howdy, I'm in Section 2.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

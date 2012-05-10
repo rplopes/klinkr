@@ -1,7 +1,7 @@
 Klinkr::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :klinks,   only: [:create, :destroy]
+  resources :klinks,   only: [:create, :destroy, :show]
 
   root to: 'static_pages#home'
   

@@ -1,7 +1,7 @@
 # require 'rubygems'
 # require 'flickraw'
 class KlinksController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :signed_in_user, only: [:create, :destroy, :show]
   before_filter :correct_user,   only: :destroy
 
   def create
@@ -31,6 +31,10 @@ class KlinksController < ApplicationController
   def destroy
     @klink.destroy
     redirect_back_or root_path
+  end
+
+  def show
+    @klink = Klink.find_by_id(params[:id])
   end
 
   private
