@@ -1,1 +1,15 @@
-<%= @klink.id %>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="left-body">
+      <h3>Newest klinks</h3>
+      <%= render 'shared/feed' %>
+      <%= render 'shared/klink_modal', feed_item: @current_klink, show: true %>
+      <script>
+        $("#modal<%= @current_klink.id %>show").modal("toggle");
+      </script>
+    </div>
+    <div class="right-col">
+      teste
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal<%= feed_item.id %>" style="display: none; width: 90%; margin-left: auto; margin-right: auto; margin-top: -45%; left: 5%; max-height: 90%">
+<div class="modal fade" id="modal<%= feed_item.id %><% if show == true %>show<% end %>" style="display: none; width: 90%; margin-left: auto; margin-right: auto; margin-top: -48%; left: 5%; max-height: 95%">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">&times;</button>
     <h3>Klink <%= feed_item.id %></h3>
@@ -10,16 +10,27 @@
     <div style="max-width: 960px; margin: auto">
       <div class="tabbable" style="text-align: left">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#details<%= feed_item.id %>" data-toggle="tab">Details</a></li>
-          <li><a href="#comments<%= feed_item.id %>" data-toggle="tab">Comments</a></li>
+          <li class="active"><a href="#details<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab">Details</a></li>
+          <li><a href="#comments<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab">Comments</a></li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" id="details<%= feed_item.id %>">
-            <p>I'm in Section 1.</p>
+
+          <div class="tab-pane active" id="details<%= feed_item.id %><% if show == true %>show<% end %>">
+            <div class="well">
+              <%= feed_item.description %>
+            </div>
+            <span class="timestamp">
+              Posted by <%= link_to feed_item.user.name, feed_item.user %> <%= time_ago_in_words(feed_item.created_at) %> ago.
+            </span>
+            <% if current_user?(feed_item.user) %>
+              <%= link_to "delete", feed_item, method: :delete, confirm: "Are you sure?", title: feed_item.description %>
+            <% end %>
           </div>
-          <div class="tab-pane" id="comments<%= feed_item.id %>">
-            <p>Howdy, I'm in Section 2.</p>
+
+          <div class="tab-pane" id="comments<%= feed_item.id %><% if show == true %>show<% end %>">
+            <p>There are no comments in this klink. Be the first to comment!</p>
           </div>
+
         </div>
       </div>
     </div>
