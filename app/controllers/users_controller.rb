@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @klinks = @user.klinks.paginate(page: params[:page])
+    @feed_items = @user.klinks.paginate(page: params[:page])
   end
 
   def new

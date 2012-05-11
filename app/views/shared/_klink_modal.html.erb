@@ -36,3 +36,12 @@
     </div>
   </div>
 </div>
+<script>
+  $('#modal<%= feed_item.id %><% if show == true %>show<% end %>').on('hidden', function () {
+    <% if show == true %>
+      window.history.pushState('', 'klink', '/');
+    <% else %>
+      window.history.back();
+    <% end %>
+  })
+</script>
