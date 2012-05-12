@@ -13,6 +13,19 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container-fluid">
+      <div class="alert alert-info" style="display:none" id="klinkSent">
+        Your klink has been sent and should be available in a moment.
+      </div>
+      <script>
+        $('#newKlinkForm').submit(function () {
+          $('#modalAdd').modal('toggle');
+          $('#klinkSent').show(100, function() {
+            setTimeout( function() {
+              $('#klinkSent').hide(100);
+            }, 5000 );
+          });
+        });
+      </script>
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, class: "alert alert-#{key}") %>
       <% end %>

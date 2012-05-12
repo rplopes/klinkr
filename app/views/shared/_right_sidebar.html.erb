@@ -16,7 +16,7 @@
     </li>
   </ul>
   <ul style="list-style: none">
-    <% User.last(5).reverse.each do |user| %>
+    <% User.last(6).reverse.each do |user| %>
       <li style="display: inline">
         <a href="/users/<%= user.id %>" title="<%= user.name %>">
           <%= gravatar_for user, options = { size: 24 } %>

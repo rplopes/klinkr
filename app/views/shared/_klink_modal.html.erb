@@ -18,6 +18,9 @@
           <div class="tab-pane active" id="details<%= feed_item.id %><% if show == true %>show<% end %>">
             <div class="well">
               <%= feed_item.description %>
+              <% if feed_item.description.length == 0 %>
+                No description provided.
+              <% end %>
             </div>
             <span class="timestamp">
               Posted by <%= link_to feed_item.user.name, feed_item.user %> <%= time_ago_in_words(feed_item.created_at) %> ago.

@@ -217,9 +217,11 @@ div.thumb {
   height: 200px;
   display:table-cell;
   vertical-align:middle;
+  text-align: center;
 }
 img.thumb {
   margin: auto;
+  max-height: 200px;
 }
 
 /* right sidebar */

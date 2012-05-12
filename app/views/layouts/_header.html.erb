@@ -1,13 +1,45 @@
+<div class="modal fade" id="modalAdd" style="width: 90%; margin-left: auto; margin-right: auto; left: 5%">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h3>New klink</h3>
+  </div>
+  <div class="modal-body" style="text-align: center; max-width: 480px; margin: auto">
+    <%= form_tag klinks_path, id: "newKlinkForm", multipart: true do %>
+    <div class="field">
+      <%= file_field_tag :photo %>
+      <script>
+        $('#photo').live ('change', function () {
+          var f = document.getElementById("photo").value.toLowerCase();
+          if(f != "" && (f.substr(-4,4) == ".jpg" || f.substr(-5,5) == ".jpeg" || f.substr(-4,4) == ".png" || f.substr(-4,4) == ".gif" || f.substr(-4,4) == ".bmp")) {
+            $("#newKlinkSubmit").removeAttr("disabled");
+          }
+          else {
+            $("#newKlinkSubmit").attr("disabled", "disabled");
+          }
+        })
+      </script>
+    </div>
+    <div class="field">
+      <textarea id="description" name="description" placeholder="Description"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" style="margin-top: 5px; margin-left: 6px">Cancel</button>
+    <%= submit_tag "klink it!", class: "btn btn-large btn-success", disabled: "disabled", id: "newKlinkSubmit" %>
+  <% end %>
+  </div>
+</div>
+
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
       <%= link_to "klinkr", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home",    root_path %></li>
-          <li><%= link_to "Help",    help_path %></li>
           <% if signed_in? %>
-            <li><%= link_to "Users", users_path %></li>
+            <li>
+              <a href="#modalAdd" data-toggle="modal">New klink</a>
+            </li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
@@ -21,6 +53,7 @@
             </li>
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
+            <li><%= link_to "Register", signup_path %></li>
           <% end %>
         </ul>
       </nav>
