@@ -1,27 +1,43 @@
 <div class="right-col">
-  <ul class="nav nav-list">
-    <li class="nav-header">
-      Newest klinks
-    </li>
-    <% Klink.last(5).reverse.each do |klink| %>
-      <li><a href="/klinks/<%= klink.id %>">
-        <%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: klink.picture_uri)), style: "width: 64px; height: 50px" %>
-        <span class="timestamp">
-          By <%= klink.user.name %>
-        </span>
-      </a></li>
-    <% end %>
-    <li class="nav-header">
-      Newest users
-    </li>
-  </ul>
-  <ul style="list-style: none">
-    <% User.last(6).reverse.each do |user| %>
-      <li style="display: inline">
-        <a href="/users/<%= user.id %>" title="<%= user.name %>">
-          <%= gravatar_for user, options = { size: 24 } %>
-        </a>
+  <div id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header">
+        Newest klinks
       </li>
-    <% end %>
-  </ul>
+      <% Klink.last(5).reverse.each do |klink| %>
+        <li><a href="/klinks/<%= klink.id %>">
+          <%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: klink.picture_uri)), style: "width: 64px; height: 50px" %>
+          <span class="timestamp">
+            By <%= klink.user.name %>
+          </span>
+        </a></li>
+      <% end %>
+      <li class="nav-header">
+        Newest users
+      </li>
+    </ul>
+    <ul style="list-style: none">
+      <% User.last(6).reverse.each do |user| %>
+        <li style="display: inline">
+          <a href="/users/<%= user.id %>" title="<%= user.name %>">
+            <%= gravatar_for user, options = { size: 24 } %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
+<script>
+  $(document).ready(function () {  
+    var top = $('#sidebar').offset().top - parseFloat($('#sidebar').css('marginTop').replace(/auto/, 0));
+    $(window).scroll(function (event) {
+      var y = $(this).scrollTop();
+      if (y >= top) {
+        $('#sidebar').addClass('fixed');
+      }
+      else {
+        $('#sidebar').removeClass('fixed');
+      }
+    });
+  });
+</script>

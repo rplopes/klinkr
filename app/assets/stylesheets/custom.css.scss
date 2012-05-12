@@ -185,6 +185,7 @@ input, textarea, select, .uneditable-input {
 .klinks {
   list-style: none;
   margin: 10px auto 0 auto;
+  float: left;
 
   li.klink {
     padding: 10px;
@@ -239,6 +240,16 @@ img.thumb {
         width: 25%;
         float: left;
     }
+    #sidebar {
+        position: absolute;
+        top: 0;
+        margin-top: 50px;
+        background: white;
+    }
+    #sidebar.fixed {
+        position: fixed;
+        top: 0;
+    }
     .left-body {
         width: 75%;
         float: left;
@@ -246,6 +257,14 @@ img.thumb {
 }
 
 /* miscellaneous */
+
+.pagination {
+  text-align: center;
+
+  ul {
+    margin: 10px auto 5px auto;
+  }
+}
 
 .debug_dump {
   clear: both;

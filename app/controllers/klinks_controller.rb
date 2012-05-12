@@ -37,7 +37,7 @@ class KlinksController < ApplicationController
     @current_klink = Klink.find_by_id(params[:id])
     if signed_in?
       @klink = current_user.klinks.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      @feed_items = current_user.feed.paginate(page: params[:page], per_page: 9)
       login = login_flickr
     end
   end

@@ -9,7 +9,9 @@
         <ol class="klinks">
           <%= render partial: 'shared/feed_item', collection: @feed_items %>
         </ol>
-        <%= will_paginate @feed_items %>
+        <p align="center">
+          <%= will_paginate @feed_items %>
+        </p>
       <% end %>
     </div>
     <%= render 'shared/right_sidebar' %>
