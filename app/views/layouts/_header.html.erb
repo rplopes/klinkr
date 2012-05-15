@@ -37,6 +37,7 @@
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
+            <li><%= link_to "Browse locations", browse_path%></li>
             <li>
               <a href="#modalAdd" data-toggle="modal">New klink</a>
             </li>

@@ -1,0 +1,71 @@
+<style type="text/css">
+  body {
+    margin: 0;
+    padding: 10px 20px 20px;
+    font-family: Arial;
+    font-size: 16px;
+  }
+
+  #map-container {
+    padding: 6px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc #ccc #999 #ccc;
+    -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+    width: 600px;
+  }
+
+  #map {
+    width: 950px;
+    height: 400px;
+  }
+
+</style>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div id="map" style="margin-top: 50px;"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+  window.onload = initialize;
+
+  var markersArray = [];
+  var map;
+
+  function placeMarker(location) {
+    var marker = new google.maps.Marker({
+        position: location, 
+        animation: null,
+        map: map,
+    });
+    markersArray.push(marker);
+  };
+
+  function initialize() {
+    var center = new google.maps.LatLng(37.4419, -122.1419);
+
+    var latlng = new google.maps.LatLng(40.209508,-8.419712);
+    var myOptions = {
+      zoom: 14,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    $.getJSON(
+      'http://localhost:3000/klinks/',
+      function(data) {
+        for (var i = 0; i < data.length; i++) {
+          var latLng = new google.maps.LatLng(data[i]["latitude"],data[i]["longitude"]);
+          var marker = placeMarker(latLng);
+        }
+        var markerCluster = new MarkerClusterer(map, markersArray);
+      }
+    );
+  }
+</script>

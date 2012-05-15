@@ -4,6 +4,14 @@ class KlinksController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy, :show]
   before_filter :correct_user,   only: :destroy
 
+  def index
+    if signed_in?
+      respond_to do |format|
+        format.json  { render :json => Klink.all }
+      end
+    end
+  end
+
   def create
     @klink = current_user.klinks.build(description: params[:description])
     ok = true
@@ -17,7 +25,8 @@ class KlinksController < ApplicationController
       ok = false
       error = "Flickr error!"
     end
-
+    @klink.latitude = (39+rand).to_s
+    @klink.longitude = (-8-rand).to_s
     if ok and @klink.save
       flash[:success] = "You have successfully klinked!"
       redirect_to root_path
