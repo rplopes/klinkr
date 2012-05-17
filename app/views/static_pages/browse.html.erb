@@ -44,6 +44,9 @@
         map: map,
     });
     markersArray.push(marker);
+    google.maps.event.addListener(marker, 'click', function() {
+      window.location = 'http://localhost:3000/klinks/3'
+    });
   };
 
   function initialize() {

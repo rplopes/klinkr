@@ -10,12 +10,17 @@
     <div style="max-width: 960px; margin: auto">
       <div class="tabbable" style="text-align: left">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#details<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab">Details</a></li>
-          <li><a href="#comments<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab">Comments</a></li>
+          <li class="active"><a href="#details<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-list-alt"></i> Details</a></li>
+          <li><a href="#comments<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-inbox"></i> Comments</a></li>
+          <li><a href="#comments<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-map-marker"></i> Location</a></li>
+          <li><a href="#comments<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-plane"></i> Reservations</a></li>
         </ul>
         <div class="tab-content">
 
           <div class="tab-pane active" id="details<%= feed_item.id %><% if show == true %>show<% end %>">
+            <p>
+              Photo Rating:   <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-empty"></i>
+            </p>
             <div class="well">
               <%= feed_item.description %>
               <% if feed_item.description.length == 0 %>

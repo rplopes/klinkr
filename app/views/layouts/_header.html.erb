@@ -33,20 +33,25 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <%= link_to "klinkr", root_path, id: "logo" %>
+      <a href="/" id="logo">kli<span style="opacity: 0.6">n</span>k<span style="opacity: 0.6">r</span></a>
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
-            <li><%= link_to "Browse locations", browse_path%></li>
-            <li>
-              <a href="#modalAdd" data-toggle="modal">New klink</a>
+            <li class="icon">
+              <a href="#modalAdd" data-toggle="modal" id="add-klink" title="Add new klink"><i class="icon-plus icon-white"></i></a>
+            </li>
+            <li class="icon">
+              <a href="browse" id="browse" title="Show Map"><i class="icon-map-marker icon-white"></i></a>
+            </li>
+            <li class="icon">
+              <a href="" id="messages" title="Show Messages"><i class="icon-envelope icon-white" ></i></a>
             </li>
             <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
+              <a href="#" class="dropdown-toggle icon" data-toggle="dropdown">
+                <i class="icon-user icon-white"></i> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to current_user.name, current_user %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
@@ -61,3 +66,9 @@
     </div>
   </div>
 </header>
+
+<script>
+  $('#add-klink').tipsy();
+  $('#browse').tipsy();
+  $('#messages').tipsy();
+</script>

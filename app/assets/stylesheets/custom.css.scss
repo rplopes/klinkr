@@ -75,7 +75,6 @@ p {
   margin-right: 10px;
   font-size: 1.7em;
   color: white;
-  text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
@@ -272,4 +271,24 @@ img.thumb {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+/*navbar*/
+
+.navbar-inner {
+  background-image: -webkit-linear-gradient(top, #00374A, #00222E);
+}
+
+.icon:hover {
+  opacity: 1;
+}
+
+.icon {
+  opacity: 0.6;
+}
+
+.nav-tabs > li > a {
+  background-color: #F5F5F5;
+  border: none;
+  color: #000000;
 }

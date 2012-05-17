@@ -25,8 +25,14 @@ class KlinksController < ApplicationController
       ok = false
       error = "Flickr error!"
     end
-    @klink.latitude = (39+rand).to_s
-    @klink.longitude = (-8-rand).to_s
+
+    latitudes = [39, 52.50, 36]
+    longitudes = [-8, -1.5, -115]
+
+    cell = (rand*3).to_i
+
+    @klink.latitude = (latitudes[cell]+rand).to_s
+    @klink.longitude = (longitudes[cell]-rand).to_s
     if ok and @klink.save
       flash[:success] = "You have successfully klinked!"
       redirect_to root_path
