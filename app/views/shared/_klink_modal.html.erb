@@ -28,7 +28,11 @@
               <% end %>
             </div>
             <span class="timestamp">
-              Posted by <%= link_to feed_item.user.name, feed_item.user %> <%= time_ago_in_words(feed_item.created_at) %> ago.
+              Posted by
+              <a href="users/<%= feed_item.user.id %>" rel="popover" data-content='<table><tr><td rowspan="2"><%= gravatar_for feed_item.user %></td><td><%= pluralize(feed_item.user.klinks.count, "klink") %></td></tr><tr><td><% if feed_item.user.klinks.count < 10 %><span class="label label-info">Newbie</span><% else %><span class="label label-success">Master</span><% end %></td></tr></table>' data-original-title="<%= feed_item.user.name %>">
+                <%= feed_item.user.name %>
+              </a>
+              <%= time_ago_in_words(feed_item.created_at) %> ago.
             </span>
             <% if current_user?(feed_item.user) %>
               <%= link_to "delete", feed_item, method: :delete, confirm: "Are you sure?", title: feed_item.description %>

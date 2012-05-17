@@ -7,3 +7,14 @@
     <%= render 'shared/right_sidebar' %>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+      $("a[rel=popover]")
+          .popover({
+              offset: 10
+          })
+          .click(function(e) {
+              e.preventDefault()
+          })
+  });
+</script>
