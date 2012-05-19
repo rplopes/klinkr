@@ -1,5 +1,6 @@
 # require 'rubygems'
 # require 'flickraw'
+require 'open-uri'
 class KlinksController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy, :show]
   before_filter :correct_user,   only: :destroy
@@ -33,6 +34,24 @@ class KlinksController < ApplicationController
 
     @klink.latitude = (latitudes[cell]+rand).to_s
     @klink.longitude = (longitudes[cell]-rand).to_s
+    puts @klink.latitude
+    puts @klink.longitude
+    results = JSON.parse(open("http://maps.googleapis.com/maps/api/geocode/json?latlng=#{@klink.latitude},#{@klink.longitude}&sensor=false").read)["results"][0]["address_components"]
+    admin_area = ""
+    results.each do |loc|
+      if loc["types"][0]=="locality"
+        @klink.location = loc["long_name"]
+      elsif loc["types"][0]=="administrative_area_level_1"
+        admin_area = loc["long_name"]
+      elsif loc["types"][0]=="country"
+        @klink.country = loc["long_name"]
+      end
+    end
+
+    if @klink.location == nil
+      @klink.location = admin_area
+    end
+
     if ok and @klink.save
       flash[:success] = "You have successfully klinked!"
       redirect_to root_path

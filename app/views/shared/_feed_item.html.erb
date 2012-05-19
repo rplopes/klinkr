@@ -1,11 +1,14 @@
 <li id="<%= feed_item.id %>" class="klink">
   <%= render 'shared/klink_modal', feed_item: feed_item, show: false %>
-  <div class="thumb">
+  <div class="thumb" style="height: 180px;">
     <a href="#modal<%= feed_item.id %>" data-toggle="modal" onclick="window.history.pushState('', 'klink', '/klinks/<%= feed_item.id %>');">
       <%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: feed_item.picture_uri)), class: "thumb" %>
     </a>
   </div>
   <span class="timestamp">
+    <a href="#modal<%= feed_item.id %>" data-toggle="modal" onclick="window.history.pushState('', 'klink', '/klinks/<%= feed_item.id %>');" style="text-align: left;">
+      <%= feed_item.country %>, <%= feed_item.location %>
+    </a><br>
     By
     <a href="users/<%= feed_item.user.id %>" rel="popover" data-content='<table><tr><td rowspan="2"><%= gravatar_for feed_item.user %></td><td><%= pluralize(feed_item.user.klinks.count, "klink") %></td></tr><tr><td><% if feed_item.user.klinks.count < 10 %><span class="label label-info">Newbie</span><% else %><span class="label label-success">Master</span><% end %></td></tr></table>' data-original-title="<%= feed_item.user.name %>">
       <%= feed_item.user.name %>

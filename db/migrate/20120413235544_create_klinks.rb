@@ -6,6 +6,8 @@ class CreateKlinks < ActiveRecord::Migration
       t.string :picture_uri
       t.string :latitude
       t.string :longitude
+      t.string :country
+      t.string :location
 
       t.timestamps
     end

@@ -8,6 +8,7 @@
         <li><a href="/klinks/<%= klink.id %>">
           <%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: klink.picture_uri)), style: "width: 64px; height: 50px" %>
           <span class="timestamp">
+            <%= klink.country %>, <%= klink.location %><br>
             By <%= klink.user.name %>
           </span>
         </a></li>

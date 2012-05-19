@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120413235544) do
     t.string   "picture_uri"
     t.string   "latitude"
     t.string   "longitude"
+    t.string   "country"
+    t.string   "location"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

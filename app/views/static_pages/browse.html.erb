@@ -58,17 +58,18 @@
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
-    map = new google.maps.Map(document.getElementById("map"), myOptions);
-    $.getJSON(
-      'http://localhost:3000/klinks/',
-      function(data) {
-        for (var i = 0; i < data.length; i++) {
-          var latLng = new google.maps.LatLng(data[i]["latitude"],data[i]["longitude"]);
-          var marker = placeMarker(latLng);
+    if(map != null){
+      map = new google.maps.Map(document.getElementById("map"), myOptions);
+      $.getJSON(
+        'http://localhost:3000/klinks/',
+        function(data) {
+          for (var i = 0; i < data.length; i++) {
+            var latLng = new google.maps.LatLng(data[i]["latitude"],data[i]["longitude"]);
+            var marker = placeMarker(latLng);
+          }
+          var markerCluster = new MarkerClusterer(map, markersArray);
         }
-        var markerCluster = new MarkerClusterer(map, markersArray);
-      }
-    );
+      );
+    }
   }
 </script>

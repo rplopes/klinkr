@@ -1,9 +1,17 @@
-<div class="center hero-unit">
-  <h1>Welcome to klinkr</h1>
+<div id="container" class="center hero-unit" style="background-color: #171717; color: white;">
+  <div id="inside">
+    <h1 style="color: white;">Welcome to klinkr</h1>
 
-  <h2>
-    klinkr is the new way to share photos of places you've been to and to find amazing new locations to visit all around the globe.
-  </h2>
+    <h2>
+      klinkr is the new way to share photos of places you've been to and to find amazing new locations to visit all around the globe.
+    </h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  </div>
 </div>
+
+<script>
+  document.body.style.background= "url(/assets/background4.jpg) no-repeat center center fixed";
+  $("#container").css({ opacity: 0.8 });
+  $("a").css("color", "white");
+</script>

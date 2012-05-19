@@ -1,3 +1,23 @@
+<style type="text/css">
+
+  #map-container {
+    padding: 6px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc #ccc #999 #ccc;
+    -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+    width: 600px;
+  }
+
+  #map {
+    width: 950px;
+    height: 400px;
+  }
+
+</style>
+
 <div class="modal fade" id="modalAdd" style="width: 90%; margin-left: auto; margin-right: auto; left: 5%">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">&times;</button>
@@ -30,6 +50,16 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalMap" style="width: 90%; margin-left: auto; margin-right: auto; left: 5%">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal" onclick="mapModalClose();">&times;</button>
+    <h3>Browse locations</h3>
+  </div>
+  <div class="modal-body" style="text-align: center; width: 100%; margin: auto; padding-left: 0px; padding-right: 0px;">
+    <div id="map-temp" style="width: 100%"></div>
+  </div>
+</div>
+
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -41,7 +71,7 @@
               <a href="#modalAdd" data-toggle="modal" id="add-klink" title="Add new klink"><i class="icon-plus icon-white"></i></a>
             </li>
             <li class="icon">
-              <a href="browse" id="browse" title="Show Map"><i class="icon-map-marker icon-white"></i></a>
+              <a href="#modalMap" data-toggle="modal" id="browse" title="Show Map" onclick="initialize();"><i class="icon-map-marker icon-white"></i></a>
             </li>
             <li class="icon">
               <a href="" id="messages" title="Show Messages"><i class="icon-envelope icon-white" ></i></a>
@@ -71,4 +101,51 @@
   $('#add-klink').tipsy();
   $('#browse').tipsy();
   $('#messages').tipsy();
+</script>
+
+<script type="text/javascript">
+
+  var markersArray = [];
+  var map;
+
+  function mapModalClose(){
+    $("#map").attr('id','map-temp');
+    map = null;
+  }
+
+  function placeMarker(id, location) {
+    var marker = new google.maps.Marker({
+        position: location, 
+        animation: null,
+        map: map,
+    });
+    markersArray.push(marker);
+    google.maps.event.addListener(marker, 'click', function() {
+      window.location = 'http://localhost:3000/klinks/'+id
+    });
+  };
+
+  function initialize() {
+    $("#map-temp").attr('id','map');
+    var center = new google.maps.LatLng(37.4419, -122.1419);
+
+    var latlng = new google.maps.LatLng(40.209508,-8.419712);
+    var myOptions = {
+      zoom: 14,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    $.getJSON(
+      'http://localhost:3000/klinks/',
+      function(data) {
+        for (var i = 0; i < data.length; i++) {
+          var latLng = new google.maps.LatLng(data[i]["latitude"],data[i]["longitude"]);
+          var marker = placeMarker(data[i]["id"], latLng);
+        }
+        var markerCluster = new MarkerClusterer(map, markersArray);
+      }
+    );
+  }
 </script>
