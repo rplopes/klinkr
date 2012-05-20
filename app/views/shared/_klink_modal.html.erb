@@ -13,7 +13,7 @@
           <li class="active"><a href="#details<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-list-alt"></i> Details</a></li>
           <li><a href="#comments<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-inbox"></i> Comments</a></li>
           <li><a onclick="initialize(<%= feed_item.id %>, <%= feed_item.latitude %>, <%= feed_item.longitude %>);" href="#location<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-map-marker"></i> Location</a></li>
-          <li><a href="#comments<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-plane"></i> Reservations</a></li>
+          <li><a href="#reservation<%= feed_item.id %><% if show == true %>show<% end %>" data-toggle="tab"><i class="icon-plane"></i> Reservations</a></li>
         </ul>
         <div class="tab-content">
 
@@ -35,7 +35,7 @@
               <%= time_ago_in_words(feed_item.created_at) %> ago.
             </span>
             <% if current_user?(feed_item.user) %>
-              <%= link_to "delete", feed_item, method: :delete, confirm: "Are you sure?", title: feed_item.description %>
+              <%= link_to "delete", feed_item, method: :delete, confirm: "Are you sure you want to delete this klink? This action cannot be undone.", title: feed_item.description %>
             <% end %>
           </div>
 
@@ -44,7 +44,50 @@
           </div>
 
           <div class="tab-pane" id="location<%= feed_item.id %><% if show == true %>show<% end %>">
-            <div id="map-temp<%= feed_item.id %>" style="width: 300px; height: 300px;"></div>
+            <div id="map-temp<%= feed_item.id %>" style="width: 300px; height: 300px; float: left"></div>
+            <div style="float: left; padding: 20px;">
+              <h3><%= feed_item.country %>, <%= feed_item.location %></h3>
+              <p><br /></p>
+              <p>Latitude: <%= feed_item.latitude %></p>
+              <p>Longitude: <%= feed_item.longitude %></p>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="reservation<%= feed_item.id %><% if show == true %>show<% end %>">
+            <div>
+              <h3>Air travel</h3>
+              <table><tr>
+              <td style="float: left; margin: 5px; text-align: center">
+                <img src="http://2006.shift.pt/lib/exe/fetch.php/en/conference/sponsorship/sponsors-tap-image.jpg?w=&h=&cache=cache" alt="TAP" /><br />
+                <a href="#" class="btn">Buy now from TAP »</a>
+              </td>
+              <td style="float: left; margin: 5px; text-align: center">
+                <img src="http://www.linienflug.net/pic/foto_airline/78.jpg" alt="Lufthansa" /><br />
+                <a href="#" class="btn">Buy now from Lufthansa »</a>
+              </td>
+              <td style="float: left; margin: 5px; text-align: center">
+                <img src="http://web02.aviationweek.com/media/images/MRO_photos/ryanair737-800BOEING.jpg" alt="Ryanair" /><br />
+                <a href="#" class="btn">Buy now from Ryanair »</a>
+              </td>
+              </tr></table>
+            </div>
+            <div style="margin-top: 10px">
+              <h3>Hotel booking</h3>
+              <table><tr>
+              <td style="float: left; margin: 5px; text-align: center">
+                <img src="http://www.asiatravel.com/indonesia/bandung/sheraton_bandung_hoteltowers/gifs/Indonesia_Bandung_Sheraton_HotelTowers_Feast_Restaurant2.jpg" alt="Sheraton Hotel" /><br />
+                <a href="#" class="btn">Buy now from Sheraton Hotel »</a>
+              </td>
+              <td style="float: left; margin: 5px; text-align: center">
+                <img src="http://www.cataloniacaribbean.com/us/img/CRM_120_MINIFICHA_width250.png" alt="Catalonia Hotel" width="250" height="150" /><br />
+                <a href="#" class="btn">Buy now from Catalonia Hotel »</a>
+              </td>
+              <td style="float: left; margin: 5px; text-align: center">
+                <img src="http://www.hotels-in-como.com/wp-content/themes/cityguide/thumb.php?src=wp-content/uploads/2010/09/ibis.jpg&w=250&h=150&zc=1&q=90" alt="Hotel Ibis" /><br />
+                <a href="#" class="btn">Buy now from Hotel Ibis »</a>
+              </td>
+              </tr></table>
+            </div>
           </div>
 
         </div>

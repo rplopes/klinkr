@@ -5,12 +5,13 @@
         Newest klinks
       </li>
       <% Klink.last(5).reverse.each do |klink| %>
-        <li><a href="/klinks/<%= klink.id %>">
-          <%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: klink.picture_uri)), style: "width: 64px; height: 50px" %>
-          <span class="timestamp">
+        <li>
+          <a href="/klinks/<%= klink.id %>">
+          <table><tr><td width="70"><%= image_tag FlickRaw.url_b(flickr.photos.getInfo(photo_id: klink.picture_uri)), style: "width: 64px; height: 50px" %></td>
+          <td><span class="timestamp">
             <%= klink.country %>, <%= klink.location %><br>
             By <%= klink.user.name %>
-          </span>
+          </span></td></tr></table>
         </a></li>
       <% end %>
       <li class="nav-header">
@@ -29,6 +30,7 @@
   </div>
 </div>
 <script>
+  $('.right-col img.gravatar').tipsy();
   /*$(document).ready(function () {  
     var top = $('#sidebar').offset().top - parseFloat($('#sidebar').css('marginTop').replace(/auto/, 0));
     $(window).scroll(function (event) {
