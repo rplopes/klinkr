@@ -71,7 +71,7 @@
               <a href="#modalAdd" data-toggle="modal" id="add-klink" title="Add new klink"><i class="icon-plus icon-white"></i></a>
             </li>
             <li class="icon">
-              <a href="#modalMap" data-toggle="modal" id="browse" title="Show Map" onclick="initialize();"><i class="icon-map-marker icon-white"></i></a>
+              <a href="#modalMap" data-toggle="modal" id="browse" title="Show Map" onclick="initializeMap();"><i class="icon-map-marker icon-white"></i></a>
             </li>
             <li class="icon">
               <a href="" id="messages" title="Show Messages"><i class="icon-envelope icon-white" ></i></a>
@@ -125,7 +125,7 @@
     });
   };
 
-  function initialize() {
+  function initializeMap() {
     $("#map-temp").attr('id','map');
     var center = new google.maps.LatLng(37.4419, -122.1419);
 
