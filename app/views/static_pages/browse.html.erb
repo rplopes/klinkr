@@ -45,7 +45,7 @@
     });
     markersArray.push(marker);
     google.maps.event.addListener(marker, 'click', function() {
-      window.location = 'http://localhost:3000/klinks/3'
+      window.location = '/klinks/3'
     });
   };
 
@@ -61,7 +61,7 @@
     if(map != null){
       map = new google.maps.Map(document.getElementById("map"), myOptions);
       $.getJSON(
-        'http://localhost:3000/klinks/',
+        '/klinks/',
         function(data) {
           for (var i = 0; i < data.length; i++) {
             var latLng = new google.maps.LatLng(data[i]["latitude"],data[i]["longitude"]);
